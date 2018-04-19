@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Lgm.Emos.Core/bin/Debug/netcoreapp2.0
+/.vs/Lgm.Emos/v15
+/.vs/EMOS-SERVER/v15/.suo
+/Lgm.Emos.Core/obj
+/Lgm.Emos.Infrastructure/bin/Debug/netcoreapp2.0
+/Lgm.Emos.Infrastructure/obj
+/Lgm.Emos.Web/bin/Debug/netcoreapp2.0
+/Lgm.Emos.Web/obj
