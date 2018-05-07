@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Lgm.Emos.Infrastructure.Migrations.IdentityAppDb
 {
-    public partial class addIdentity : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -162,10 +162,14 @@ namespace Lgm.Emos.Infrastructure.Migrations.IdentityAppDb
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Gender = table.Column<string>(nullable: true),
+                    BadgeCode = table.Column<string>(maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
                     IdentityId = table.Column<string>(nullable: true),
-                    Location = table.Column<string>(nullable: true),
-                    Team = table.Column<string>(nullable: true)
+                    LastName = table.Column<string>(maxLength: 50, nullable: false),
+                    Office = table.Column<string>(maxLength: 50, nullable: false),
+                    Rank = table.Column<string>(maxLength: 50, nullable: false),
+                    Service = table.Column<string>(maxLength: 50, nullable: false),
+                    Team = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {

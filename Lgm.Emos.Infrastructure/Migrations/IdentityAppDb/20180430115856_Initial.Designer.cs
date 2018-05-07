@@ -11,8 +11,8 @@ using System;
 namespace Lgm.Emos.Infrastructure.Migrations.IdentityAppDb
 {
     [DbContext(typeof(IdentityAppDbContext))]
-    [Migration("20180415012835_addIdentity")]
-    partial class addIdentity
+    [Migration("20180430115856_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,13 +26,35 @@ namespace Lgm.Emos.Infrastructure.Migrations.IdentityAppDb
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Gender");
+                    b.Property<string>("BadgeCode")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<string>("IdentityId");
 
-                    b.Property<string>("Location");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("Team");
+                    b.Property<string>("Office")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Rank")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Service")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Team")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 

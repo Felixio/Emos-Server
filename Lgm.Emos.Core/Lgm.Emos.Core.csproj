@@ -7,8 +7,8 @@
   <ItemGroup>
     <Compile Remove="Class1.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.7" />
   </ItemGroup>
 </Project>

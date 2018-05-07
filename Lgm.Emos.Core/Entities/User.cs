@@ -1,11 +1,16 @@
 ﻿using System;
-namespace Lgm.Emos.Infrastructure.Identity
+using System.Collections.Generic;
+using System.Text;
+
+namespace Lgm.Emos.Core.Entities
 {
-    public class EmosUser
+    public class User : BaseEntity
     {
-        public int Id { get; set; }
-        public string IdentityId { get; set; }
-        public IdentityAppUser Identity { get; set; }  // navigation property
+        public User()
+        {
+
+        }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Service { get; set; }
@@ -13,5 +18,8 @@ namespace Lgm.Emos.Infrastructure.Identity
         public string Team { get; set; }
         public string Rank { get; set; }
         public string BadgeCode { get; set; }
+
+
+
     }
 }
