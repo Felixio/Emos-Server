@@ -39,8 +39,8 @@ namespace AngularASPNETCore2WebApiAuth.Controllers
                 Message = "API et données utilisateur sécurisées !",
                 emosUser.Identity.FirstName,
                 emosUser.Identity.LastName,
-                emosUser.Location,
-                emosUser.Gender
+                //emosUser.Location,
+                //emosUser.Gender
             });
     }
   }

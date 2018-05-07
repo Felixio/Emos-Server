@@ -10,3 +10,6 @@
 /Lgm.Emos.Infrastructure/obj
 /Lgm.Emos.Web/bin/Debug/netcoreapp2.0
 /Lgm.Emos.Web/obj
+/.vs
+/Lgm.Emos.Web/Lgm.Emos.Web.csproj.user
+/Lgm.Emos.Web/Logs

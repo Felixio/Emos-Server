@@ -1,4 +1,5 @@
 ﻿using System;
+using Lgm.Emos.Infrastructure.Identity.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,5 +13,12 @@ namespace Lgm.Emos.Infrastructure.Identity
         }
 
         public DbSet<EmosUser> EmosUsers { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new EmosUserConfiguration());
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Lgm.Emos.Core.Entities;
+using Lgm.Emos.Core.Interfaces;
 using Lgm.Emos.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lgm.Emos.Core.Interfaces
+namespace Lgm.Emos.Infrastructure.Interfaces
 {
     public class BaseRepository<T> : IRepository<T>, IAsyncRepository<T> where T: BaseEntity
     {

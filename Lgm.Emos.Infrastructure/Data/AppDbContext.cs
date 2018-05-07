@@ -11,12 +11,15 @@ namespace Lgm.Emos.Infrastructure.Data
         }
 
         public DbSet<Tool> Tools { get; set; }
+        public DbSet<User> Users { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new ToolConfiguration());
-		}
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+
+        }
 	}
 }
