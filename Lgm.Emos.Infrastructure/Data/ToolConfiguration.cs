@@ -9,6 +9,7 @@ namespace Lgm.Emos.Infrastructure.Data
     {
         public void Configure(EntityTypeBuilder<Tool> builder)
         {
+            
             // Id Column
             builder.HasKey(t => t.Id);
 

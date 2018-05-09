@@ -9,7 +9,7 @@ namespace Lgm.Emos.Infrastructure.Data
         public void Configure(EntityTypeBuilder<User> builder)
         {
             // Id Column
-            builder.HasKey(u => u.Id);
+            builder.HasKey(u => u.UserId);
 
             // FirstName Column
             builder.Property(u => u.FirstName)
@@ -21,30 +21,34 @@ namespace Lgm.Emos.Infrastructure.Data
                     .IsRequired()
                    .HasMaxLength(50);
 
-            // Office Column
-            builder.Property(u => u.Office)
+            // DateOfBearth Column
+            builder.Property(u => u.DateOfBirth)
                     .IsRequired()
-                   .HasMaxLength(50);
-
-            // Team Column
-            builder.Property(u => u.Team)
-                    .IsRequired()
-                   .HasMaxLength(50);
+                    .HasMaxLength(50);
+            // IdBadge Column
+            //builder.Property(u => u.CardCode)
+            //       .IsRequired()
+            //      .HasMaxLength(50);
 
             // Rank Column
-            builder.Property(u => u.Rank)
+            builder.Property(u => u.Number)
                     .IsRequired()
                    .HasMaxLength(50);
-
-            // Service Column
-            builder.Property(u => u.Service)
-                    .IsRequired()
-                   .HasMaxLength(50);
-            // IdBadge Column
-            builder.Property(u => u.BadgeCode)
-                   .IsRequired()
-                  .HasMaxLength(50);
+            
           
+            builder.HasMany<Team>(u => u.Teams);
+            builder.HasMany<Entity>(u => u.Entities);
+
+            builder.HasOne<Function>(u => u.Function);
+            builder.HasOne<Grade>(u => u.Grade);
+            builder.HasOne<Card>(u => u.Card);
+
+
+
+
+
+
+
 
         }
     }

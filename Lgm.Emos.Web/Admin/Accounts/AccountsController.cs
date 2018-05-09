@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Lgm.Emos.Core.Entities;
 using Lgm.Emos.Infrastructure.Identity;
 using Lgm.Emos.Web.Helpers;
 using Microsoft.AspNetCore.Identity;
