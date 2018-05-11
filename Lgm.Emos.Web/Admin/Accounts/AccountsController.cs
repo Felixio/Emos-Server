@@ -41,7 +41,7 @@ namespace Lgm.Emos.Web.Controllers
             await _appDbContext.EmosUsers.AddAsync(new EmosUser { IdentityId = userIdentity.Id });
             await _appDbContext.SaveChangesAsync();
 
-            return new OkObjectResult("Account created");
+            return Ok("Account created");
         }
     }
 }

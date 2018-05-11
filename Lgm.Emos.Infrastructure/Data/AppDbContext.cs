@@ -18,8 +18,8 @@ namespace Lgm.Emos.Infrastructure.Data
         public DbSet<Entity> Entities { get; set; }
         public DbSet<ApplicationGroup> ApplicationGroups { get; set; }
         public DbSet<Card> Cards { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<UserTeam> userTeams { get; set; }
+        //public DbSet<User> User { get; set; }
+        public DbSet<UserTeam> UserTeams { get; set; }
         public DbSet<UserEntity> UserEntitIES { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -34,7 +34,7 @@ namespace Lgm.Emos.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new EntityConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationGroupConfiguration());
             modelBuilder.ApplyConfiguration(new CardConfiguration());
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            //modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new UserTeamConfiguration());
             modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
             

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lgm.Emos.Core.Entities
 {
-    public class Function :BaseEntity
+    public class Function : BaseEntity
     {
         public Function()
         {

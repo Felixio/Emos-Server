@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Lgm.Emos.Core.Entities;
 using Lgm.Emos.Infrastructure.Data;
 using Lgm.Emos.Infrastructure.Identity;
 using Microsoft.AspNetCore;

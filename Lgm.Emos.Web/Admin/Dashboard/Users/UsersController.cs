@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using Lgm.Emos.Core.Entities;
 using Lgm.Emos.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -39,9 +40,9 @@ namespace Lgm.Emos.Web.Admin.Dashboard.Users
             // retrieve the user info
             //HttpContext.User
             //var userId = _caller.Claims.Single(c => c.Type == "id");
-            var emosUsers = await _appDbContext.EmosUsers.Select(u => new { u.Id, u.FirstName, u.LastName, u.Service, u.Office, u.Team, u.Rank, u.BadgeCode }).ToListAsync();
+            var users = await _appDbContext.EmosUsers.Select(u => new { u.Id, u.FirstName, u.LastName }).ToListAsync();
 
-            return new OkObjectResult(emosUsers);
+            return new OkObjectResult(users);
         }
 
         [Route("api/dashboard/users/firstName/lastName")]
@@ -60,7 +61,7 @@ namespace Lgm.Emos.Web.Admin.Dashboard.Users
         {
             // retrieve the user info
 
-            var user = await _appDbContext.EmosUsers.FirstOrDefaultAsync(u => u.BadgeCode == code);
+            var user = await _appDbContext.EmosUsers.FirstOrDefaultAsync(u => u.CardCode == code);
 
             if (user != null)
             {
@@ -78,11 +79,11 @@ namespace Lgm.Emos.Web.Admin.Dashboard.Users
         {
             if (ModelState.IsValid)
             {
-                EmosUser emosUser = await _appDbContext.EmosUsers.SingleOrDefaultAsync(u => u.Id == id);
+                EmosUser user = await _appDbContext.EmosUsers.SingleOrDefaultAsync(u => u.Id == id);
 
-                if (emosUser != null)
+                if (user != null)
                 {
-                    _appDbContext.Remove<EmosUser>(emosUser);
+                    _appDbContext.Remove<EmosUser>(user);
                     await _appDbContext.SaveChangesAsync();
 
                     // retrieve the user info
@@ -106,24 +107,24 @@ namespace Lgm.Emos.Web.Admin.Dashboard.Users
             if (ModelState.IsValid)
             {
 
-                EmosUser emosUser = await _appDbContext.EmosUsers.SingleOrDefaultAsync(u => u.Id == userInfo.id);
+                EmosUser user = await _appDbContext.EmosUsers.SingleOrDefaultAsync(u => u.Id == userInfo.id);
 
-                if (emosUser != null)
+                if (user != null)
                 {
-                    emosUser.FirstName = userInfo.firstName;
-                    emosUser.LastName = userInfo.lastName;
-                    emosUser.Office = userInfo.office;
-                    emosUser.Rank = userInfo.rank;
-                    emosUser.Service = userInfo.service;
-                    emosUser.Team = userInfo.team;
-                    emosUser.BadgeCode = userInfo.badgeCode;
+                    user.FirstName = userInfo.firstName;
+                    user.LastName = userInfo.lastName;
+                    //user.Office = userInfo.office;
+                    //user.Grade = userInfo.;
+                    //user.Service = userInfo.service;
+                    //user.Team = userInfo.team;
+                    user.CardCode = userInfo.badgeCode;
                     await _appDbContext.SaveChangesAsync();
 
                     // retrieve the user info
                     //HttpContext.User
                     //var userId = _caller.Claims.Single(c => c.Type == "id");
                    
-                    return Ok(new ApiModelUser { id = emosUser.Id, firstName = emosUser.FirstName, lastName = emosUser.LastName, office = emosUser.Office, rank = emosUser.Rank, service = emosUser.Service, team = emosUser.Team, badgeCode = emosUser.BadgeCode });
+                    return Ok(new ApiModelUser { id = user.Id, firstName = user.FirstName, lastName = user.LastName, /* office = user.Office, rank = user.Rank, service = user.Service, team = user.Team,*/ badgeCode = user.CardCode});
                 }
             }
 
@@ -139,15 +140,15 @@ namespace Lgm.Emos.Web.Admin.Dashboard.Users
 
                 emosUser.FirstName = userInfo.firstName;
                 emosUser.LastName = userInfo.lastName;
-                emosUser.Office = userInfo.office;
-                emosUser.Rank = userInfo.rank;
-                emosUser.Service = userInfo.service;
-                emosUser.Team = userInfo.team;
-                emosUser.BadgeCode = userInfo.badgeCode;
+                //emosUser.Office = userInfo.office;
+                //emosUser.Rank = userInfo.rank;
+                //emosUser.Service = userInfo.service;
+                //emosUser.Team = userInfo.team;
+                //emosUser.BadgeCode = userInfo.badgeCode;
                 await _appDbContext.AddAsync(emosUser);
                 await _appDbContext.SaveChangesAsync();
 
-                return Ok(new ApiModelUser { id = emosUser.Id, firstName = emosUser.FirstName, lastName = emosUser.LastName, office = emosUser.Office, rank = emosUser.Rank, service = emosUser.Service, team = emosUser.Team, badgeCode = emosUser.BadgeCode });
+                return Ok(new ApiModelUser { id = emosUser.Id, firstName = emosUser.FirstName, lastName = emosUser.LastName,/* office = emosUser.Office, rank = emosUser.Rank, service = emosUser.Service, team = emosUser.Team, badgeCode = emosUser.BadgeCode*/ });
 
             }
             // retrieve the user info

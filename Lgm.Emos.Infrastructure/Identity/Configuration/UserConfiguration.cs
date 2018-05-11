@@ -2,14 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Lgm.Emos.Infrastructure.Data
+namespace Lgm.Emos.Infrastructure.Identity.Configuration
 {
-    internal class UserConfiguration : IEntityTypeConfiguration<User>
+    internal class UserConfiguration : IEntityTypeConfiguration<EmosUser>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<EmosUser> builder)
         {
             // Id Column
-            builder.HasKey(u => u.UserId);
+            builder.HasKey(u => u.Id);
 
             // FirstName Column
             builder.Property(u => u.FirstName)
@@ -25,30 +25,11 @@ namespace Lgm.Emos.Infrastructure.Data
             builder.Property(u => u.DateOfBirth)
                     .IsRequired()
                     .HasMaxLength(50);
+            
             // IdBadge Column
             //builder.Property(u => u.CardCode)
             //       .IsRequired()
             //      .HasMaxLength(50);
-
-            // Rank Column
-            builder.Property(u => u.Number)
-                    .IsRequired()
-                   .HasMaxLength(50);
-            
-          
-            builder.HasMany<Team>(u => u.Teams);
-            builder.HasMany<Entity>(u => u.Entities);
-
-            builder.HasOne<Function>(u => u.Function);
-            builder.HasOne<Grade>(u => u.Grade);
-            builder.HasOne<Card>(u => u.Card);
-
-
-
-
-
-
-
 
         }
     }

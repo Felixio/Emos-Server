@@ -9,7 +9,7 @@ namespace Lgm.Emos.Infrastructure.Data
         public void Configure(EntityTypeBuilder<Entity> builder)
         {
             // Id Column
-            builder.HasKey(e => e.EntityId);
+            builder.HasKey(e => e.Id);
 
             // Name Column
             builder.Property(e => e.Name)
@@ -25,10 +25,6 @@ namespace Lgm.Emos.Infrastructure.Data
             builder.Property(e => e.idPicture)
                    .IsRequired()
                    .HasMaxLength(50);
-
-            builder.HasOne<Entity>(e => e.ParentEntity);
-
-            builder.HasMany<User>(e => e.Users);
 
         }
     }

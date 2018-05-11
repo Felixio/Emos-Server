@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lgm.Emos.Core.Entities
 {
-    public class UserTeam : BaseEntity
+    public class UserTeam
     {
         public UserTeam()
         {
@@ -12,7 +12,7 @@ namespace Lgm.Emos.Core.Entities
         }
         public int TeamId { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
+        public EmosUser User { get; set; }
         public Team Team { get; set; }
     }
 }

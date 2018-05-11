@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Lgm.Emos.Core.Entities;
 using Lgm.Emos.Infrastructure.Identity;
 using Lgm.Emos.Web.Admin.Dashboard.Users;
 

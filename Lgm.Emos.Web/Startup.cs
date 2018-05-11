@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation.AspNetCore;
+using Lgm.Emos.Core.Entities;
 using Lgm.Emos.Infrastructure.Data;
 using Lgm.Emos.Infrastructure.Identity;
 using Lgm.Emos.Web.Helpers;

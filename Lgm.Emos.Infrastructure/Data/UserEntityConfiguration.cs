@@ -8,7 +8,15 @@ namespace Lgm.Emos.Infrastructure.Data
     {
         public void Configure(EntityTypeBuilder<UserEntity> builder)
         {
-            builder.HasKey(ue => new { ue.EntityId , ue.UserId });
+            builder.HasKey(ue => new { ue.EntityId , ue.EmosUserId });
+
+            builder.HasOne(ue => ue.User)
+                .WithMany(u => u.UserEntities)
+                .HasForeignKey(ue => ue.EmosUserId);
+
+            builder.HasOne(ue => ue.Entity)
+                .WithMany(e => e.UserEntities)
+                .HasForeignKey(ue => ue.EntityId);
         }
     }
 }

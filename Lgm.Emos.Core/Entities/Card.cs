@@ -9,6 +9,7 @@ namespace Lgm.Emos.Core.Entities
         protected Card()
         {
         }
+
         public string Number { get; set; }
         public string AdditionalInfo  { get; set; }
         public DateTime DateCreation { get; set; }

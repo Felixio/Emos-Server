@@ -2,6 +2,7 @@
  
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Lgm.Emos.Core.Entities;
 using Lgm.Emos.Infrastructure.Identity;
 using Lgm.Emos.Web;
 using Lgm.Emos.Web.Helpers;
