@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Lgm.Emos.Core.Entities;
+using Lgm.Emos.Infrastructure.Data;
 using Lgm.Emos.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -18,9 +19,9 @@ namespace AngularASPNETCore2WebApiAuth.Controllers
   public class DashboardController : Controller
   {
     private readonly ClaimsPrincipal _caller;
-    private readonly IdentityAppDbContext _appDbContext;
+    private readonly AppDbContext _appDbContext;
 
-        public DashboardController(UserManager<IdentityAppUser> userManager, IdentityAppDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
+        public DashboardController(UserManager<IdentityAppUser> userManager, AppDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
     {
       _caller = httpContextAccessor.HttpContext.User;
       _appDbContext = appDbContext;

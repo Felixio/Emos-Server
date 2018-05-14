@@ -1,4 +1,5 @@
 ﻿using Lgm.Emos.Core.Entities;
+using Lgm.Emos.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -11,7 +12,7 @@ namespace Lgm.Emos.Infrastructure.Identity
 {
     public class IdentityAppDbContextSeedData
     {
-        public static async Task SeedAsync(UserManager<IdentityAppUser> userManager, IdentityAppDbContext appDbContext)
+        public static async Task SeedAsync(UserManager<IdentityAppUser> userManager, AppDbContext appDbContext)
         {
             Random rnd = new Random();
             
@@ -73,7 +74,7 @@ namespace Lgm.Emos.Infrastructure.Identity
                     
 
                 }
-                catch (System.Exception ex)
+                catch
                 {
                 }
             }
