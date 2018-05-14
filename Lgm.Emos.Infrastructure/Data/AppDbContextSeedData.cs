@@ -1,4 +1,5 @@
 ﻿using Lgm.Emos.Core.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -10,26 +11,74 @@ namespace Lgm.Emos.Infrastructure.Data
 {
     public class AppDbContextSeedData
     {
-        public static async Task SeedAsync(IServiceProvider services)
+        public static async Task SeedAsync(UserManager<IdentityAppUser> userManager, AppDbContext appDbContext)
         {
-            var context = services.GetRequiredService<AppDbContext>();
+            Random rnd = new Random();
 
-            await Task.CompletedTask;
+            if (!appDbContext.EmosUsers.Any(u => u.Identity.Email == "admin@lgm.fr"))
+            {
+                try
+                {
+                    var userIdentity = new IdentityAppUser
+                    {
+                        UserName = "admin@lgm.fr",
+                        Email = "admin@lgm.fr",
+                        FirstName = "Admin",
+                        LastName = "Admin",
+                    };
+                    await userManager.CreateAsync(userIdentity, "password");
 
-            // Check if data should be seeded
-            //if (!context.Tools.Any())
-            //{
-            //    var tools = new List<Tool>
-            //    {
-            //        new Tool { Ref= "Ref1", Description="This is a tool"},
-            //        new Tool { Ref= "Ref2", Description="This is a tool"},
-            //        new Tool { Ref= "Ref3", Description="This is a tool"},
-            //        new Tool { Ref= "Ref4", Description="This is a tool"}
-            //    };
+                    await appDbContext.EmosUsers.AddAsync(new EmosUser
+                    {
+                        IdentityId = userIdentity.Id,
+                        FirstName = userIdentity.FirstName,
+                        LastName = userIdentity.LastName,
+                        //Service = "Mécanique",
+                        //Office = "13",
+                        //Team = "Bests",
+                        //Rank = "Top",
+                        //BadgeCode = rnd.Next(1,9).ToString()
 
-            //    context.Tools.AddRange(tools);
-            //    await context.SaveChangesAsync();   // Add data
-            //}
+                    });
+
+                    IdentityAppUser[] identityUsers = new IdentityAppUser[120];
+
+                    for (int i = 1; i < 120; i++)
+                    {
+                        identityUsers[i] = new IdentityAppUser
+                        {
+                            UserName = $"user{i}@lgm.fr",
+                            Email = $"user{i}@lgm.fr",
+                            FirstName = $"prenom{i}",
+                            LastName = $"nom{i}",
+                        };
+
+                        await userManager.CreateAsync(identityUsers[i], "password");
+
+                        appDbContext.EmosUsers.Add(new EmosUser
+                        {
+                            IdentityId = identityUsers[i].Id,
+                            FirstName = identityUsers[i].FirstName,
+                            LastName = identityUsers[i].LastName,
+                            //Service = $"Service{i%5}",
+                            //Office = $"bureau{i%5}",
+                            //Team = $"Equipe{i%10}",
+                            //Rank = $"Grade{i%4}",
+                            //BadgeCode = rnd.Next(1, 9).ToString()
+
+                        });
+                        appDbContext.SaveChanges();
+                    }
+
+
+
+                }
+                catch
+                {
+                }
+            }
+
+
         }
     }
 }

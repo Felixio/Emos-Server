@@ -7,7 +7,6 @@ using AutoMapper;
 using FluentValidation.AspNetCore;
 using Lgm.Emos.Core.Entities;
 using Lgm.Emos.Infrastructure.Data;
-using Lgm.Emos.Infrastructure.Identity;
 using Lgm.Emos.Web.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -98,7 +97,7 @@ namespace Lgm.Emos.Web
 
         private void AddSecurity(IServiceCollection services)
         {
-            services.AddDbContext<IdentityAppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSingleton<IJwtFactory, JwtFactory>();
 
@@ -161,7 +160,7 @@ namespace Lgm.Emos.Web
                 o.Password.RequiredLength = 6;
             });
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
-            builder.AddEntityFrameworkStores<IdentityAppDbContext>().AddDefaultTokenProviders();
+            builder.AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

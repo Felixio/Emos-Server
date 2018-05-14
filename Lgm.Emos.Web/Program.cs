@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Lgm.Emos.Core.Entities;
 using Lgm.Emos.Infrastructure.Data;
-using Lgm.Emos.Infrastructure.Identity;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -71,12 +70,9 @@ namespace Lgm.Emos.Web
 
                 try
                 {
-                    AppDbContextSeedData.SeedAsync(services)
-                        .Wait();
-
                     var userManager = services.GetRequiredService<UserManager<IdentityAppUser>>();
                     var dbContext = services.GetRequiredService<AppDbContext>();
-                    IdentityAppDbContextSeedData.SeedAsync(userManager, dbContext).Wait();
+                    AppDbContextSeedData.SeedAsync(userManager, dbContext).Wait();
                 }
                 catch (Exception)
                 {

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Lgm.Emos.Core.Entities;
 using Lgm.Emos.Infrastructure.Data;
-using Lgm.Emos.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

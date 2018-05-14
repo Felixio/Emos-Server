@@ -5,18 +5,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lgm.Emos.Infrastructure.Identity
 {
-    public class IdentityAppDbContext : IdentityDbContext<IdentityAppUser>
-    {
-        public IdentityAppDbContext(DbContextOptions<IdentityAppDbContext> options)
-              : base(options)
-        {
-        }
+    //public class IdentityAppDbContext : IdentityDbContext<IdentityAppUser>
+    //{
+    //    public IdentityAppDbContext(DbContextOptions<IdentityAppDbContext> options)
+    //          : base(options)
+    //    {
+    //    }
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+    //    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //    {
+    //        base.OnModelCreating(modelBuilder);
 
-        }
-    }
+    //    }
+    //}
 }
