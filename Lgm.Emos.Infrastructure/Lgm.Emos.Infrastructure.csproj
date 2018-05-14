@@ -5,11 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\IdentityAppDb\20180430113851_Initial.cs" />
+    <Compile Remove="Migrations\IdentityAppDb\20180430114318_Initial.cs" />
+    <Compile Remove="Migrations\IdentityAppDb\20180430115019_Initial.cs" />
+    <Compile Remove="Migrations\IdentityAppDb\20180430115313_Initial.cs" />
+    <Compile Remove="Migrations\IdentityAppDb\20180430115727_Initial.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Identity\Configuration\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lgm.Emos.Core\Lgm.Emos.Core.csproj" />
@@ -24,8 +28,5 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Identity\EmosUser.cs" />
   </ItemGroup>
 </Project>

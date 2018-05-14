@@ -6,7 +6,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Lgm.Emos.Core.Entities;
-using Lgm.Emos.Infrastructure.Data;
 using Lgm.Emos.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -23,11 +22,11 @@ namespace Lgm.Emos.Web.Admin.Dashboard.Users
     public class UsersController : Controller
     {
         private readonly ClaimsPrincipal _caller;
-        private readonly AppDbContext _appDbContext;
+        private readonly IdentityAppDbContext _appDbContext;
         private readonly IHostingEnvironment _environment;
         private readonly IMapper _mapper;
 
-        public UsersController(UserManager<IdentityAppUser> userManager, AppDbContext appDbContext, IHttpContextAccessor httpContextAccessor, IMapper mapper, IHostingEnvironment environment)
+        public UsersController(UserManager<IdentityAppUser> userManager, IdentityAppDbContext appDbContext, IHttpContextAccessor httpContextAccessor, IMapper mapper, IHostingEnvironment environment)
         {
             _caller = httpContextAccessor.HttpContext.User;
             _appDbContext = appDbContext;

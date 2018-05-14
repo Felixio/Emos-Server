@@ -75,7 +75,7 @@ namespace Lgm.Emos.Web
                         .Wait();
 
                     var userManager = services.GetRequiredService<UserManager<IdentityAppUser>>();
-                    var dbContext = services.GetRequiredService<AppDbContext>();
+                    var dbContext = services.GetRequiredService<IdentityAppDbContext>();
                     IdentityAppDbContextSeedData.SeedAsync(userManager, dbContext).Wait();
                 }
                 catch (Exception)

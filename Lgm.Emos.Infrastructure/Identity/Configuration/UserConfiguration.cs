@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Lgm.Emos.Infrastructure.Data
+namespace Lgm.Emos.Infrastructure.Identity.Configuration
 {
     internal class UserConfiguration : IEntityTypeConfiguration<EmosUser>
     {

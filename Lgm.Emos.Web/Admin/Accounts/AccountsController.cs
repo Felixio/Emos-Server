@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Lgm.Emos.Core.Entities;
-using Lgm.Emos.Infrastructure.Data;
 using Lgm.Emos.Infrastructure.Identity;
 using Lgm.Emos.Web.Helpers;
 using Microsoft.AspNetCore.Identity;
@@ -13,11 +12,11 @@ namespace Lgm.Emos.Web.Controllers
     [Route("api/[controller]")]
     public class AccountsController : Controller
     {
-        private readonly AppDbContext _appDbContext;
+        private readonly IdentityAppDbContext _appDbContext;
         private readonly UserManager<IdentityAppUser> _userManager;
         private readonly IMapper _mapper;
 
-        public AccountsController(UserManager<IdentityAppUser> userManager, IMapper mapper, AppDbContext appDbContext)
+        public AccountsController(UserManager<IdentityAppUser> userManager, IMapper mapper, IdentityAppDbContext appDbContext)
         {
             _userManager = userManager;
             _mapper = mapper;

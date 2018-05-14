@@ -63,60 +63,9 @@ namespace Lgm.Emos.Infrastructure.Migrations
                     b.ToTable("Card");
                 });
 
-            modelBuilder.Entity("Lgm.Emos.Core.Entities.EmosUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CardCode");
-
-                    b.Property<int?>("CardId");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<int?>("FunctionId");
-
-                    b.Property<int?>("GradeId");
-
-                    b.Property<int?>("GroupId");
-
-                    b.Property<string>("IdentityId");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Number");
-
-                    b.Property<int?>("TeamId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CardId");
-
-                    b.HasIndex("FunctionId");
-
-                    b.HasIndex("GradeId");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("IdentityId");
-
-                    b.HasIndex("TeamId");
-
-                    b.ToTable("EmosUser");
-                });
-
             modelBuilder.Entity("Lgm.Emos.Core.Entities.Entity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("EntityId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description")
@@ -127,14 +76,18 @@ namespace Lgm.Emos.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int?>("ParentEntityId");
+                    b.Property<int?>("ParentEntityEntityId");
+
+                    b.Property<int?>("UserId");
 
                     b.Property<int>("idPicture")
                         .HasMaxLength(50);
 
-                    b.HasKey("Id");
+                    b.HasKey("EntityId");
 
-                    b.HasIndex("ParentEntityId");
+                    b.HasIndex("ParentEntityEntityId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Entity");
                 });
@@ -173,64 +126,9 @@ namespace Lgm.Emos.Infrastructure.Migrations
                     b.ToTable("Grade");
                 });
 
-            modelBuilder.Entity("Lgm.Emos.Core.Entities.IdentityAppUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("IdentityAppUser");
-                });
-
             modelBuilder.Entity("Lgm.Emos.Core.Entities.Team", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TeamId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<bool>("ApplyScheduleAccessRule")
@@ -248,13 +146,17 @@ namespace Lgm.Emos.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int?>("TeamLeaderId");
+                    b.Property<int?>("TeamLeaderTeamId");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("UserId");
+
+                    b.HasKey("TeamId");
 
                     b.HasIndex("EntityId");
 
-                    b.HasIndex("TeamLeaderId");
+                    b.HasIndex("TeamLeaderTeamId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Team");
                 });
@@ -275,15 +177,72 @@ namespace Lgm.Emos.Infrastructure.Migrations
                     b.ToTable("Tool");
                 });
 
+            modelBuilder.Entity("Lgm.Emos.Core.Entities.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CardCode");
+
+                    b.Property<int?>("CardId");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasMaxLength(50);
+
+                    b.Property<int?>("EntityId");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int?>("FunctionId");
+
+                    b.Property<int?>("GradeId");
+
+                    b.Property<int?>("GroupId");
+
+                    b.Property<int>("IdPicture");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int?>("TeamId");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("CardId");
+
+                    b.HasIndex("EntityId");
+
+                    b.HasIndex("FunctionId");
+
+                    b.HasIndex("GradeId");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("User");
+                });
+
             modelBuilder.Entity("Lgm.Emos.Core.Entities.UserEntity", b =>
                 {
                     b.Property<int>("EntityId");
 
-                    b.Property<int>("EmosUserId");
+                    b.Property<int>("UserId");
 
-                    b.HasKey("EntityId", "EmosUserId");
+                    b.Property<int>("Id");
 
-                    b.HasIndex("EmosUserId");
+                    b.HasKey("EntityId", "UserId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserEntity");
                 });
@@ -294,6 +253,8 @@ namespace Lgm.Emos.Infrastructure.Migrations
 
                     b.Property<int>("UserId");
 
+                    b.Property<int>("Id");
+
                     b.HasKey("TeamId", "UserId");
 
                     b.HasIndex("UserId");
@@ -301,119 +262,41 @@ namespace Lgm.Emos.Infrastructure.Migrations
                     b.ToTable("UserTeam");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+            modelBuilder.Entity("Lgm.Emos.Core.Entities.Entity", b =>
                 {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.HasOne("Lgm.Emos.Core.Entities.Entity", "ParentEntity")
+                        .WithMany()
+                        .HasForeignKey("ParentEntityEntityId");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("IdentityRole");
+                    b.HasOne("Lgm.Emos.Core.Entities.User")
+                        .WithMany("Entities")
+                        .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Lgm.Emos.Core.Entities.Team", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.HasOne("Lgm.Emos.Core.Entities.Entity", "Entity")
+                        .WithMany()
+                        .HasForeignKey("EntityId");
 
-                    b.Property<string>("ClaimType");
+                    b.HasOne("Lgm.Emos.Core.Entities.Team", "TeamLeader")
+                        .WithMany()
+                        .HasForeignKey("TeamLeaderTeamId");
 
-                    b.Property<string>("ClaimValue");
-
-                    b.Property<string>("RoleId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("IdentityRoleClaim<string>");
+                    b.HasOne("Lgm.Emos.Core.Entities.User")
+                        .WithMany("Teams")
+                        .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ClaimType");
-
-                    b.Property<string>("ClaimValue");
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("IdentityUserClaim<string>");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.Property<string>("LoginProvider");
-
-                    b.Property<string>("ProviderKey");
-
-                    b.Property<string>("ProviderDisplayName");
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("IdentityUserLogin<string>");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId");
-
-                    b.Property<string>("RoleId");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("IdentityUserRole<string>");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.Property<string>("UserId");
-
-                    b.Property<string>("LoginProvider");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Value");
-
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("IdentityUserToken<string>");
-                });
-
-            modelBuilder.Entity("Lgm.Emos.Core.Entities.EmosUser", b =>
+            modelBuilder.Entity("Lgm.Emos.Core.Entities.User", b =>
                 {
                     b.HasOne("Lgm.Emos.Core.Entities.Card", "Card")
                         .WithMany()
                         .HasForeignKey("CardId");
+
+                    b.HasOne("Lgm.Emos.Core.Entities.Entity")
+                        .WithMany("Users")
+                        .HasForeignKey("EntityId");
 
                     b.HasOne("Lgm.Emos.Core.Entities.Function", "Function")
                         .WithMany()
@@ -427,43 +310,21 @@ namespace Lgm.Emos.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("GroupId");
 
-                    b.HasOne("Lgm.Emos.Core.Entities.IdentityAppUser", "Identity")
-                        .WithMany()
-                        .HasForeignKey("IdentityId");
-
                     b.HasOne("Lgm.Emos.Core.Entities.Team")
                         .WithMany("Users")
                         .HasForeignKey("TeamId");
                 });
 
-            modelBuilder.Entity("Lgm.Emos.Core.Entities.Entity", b =>
-                {
-                    b.HasOne("Lgm.Emos.Core.Entities.Entity", "ParentEntity")
-                        .WithMany()
-                        .HasForeignKey("ParentEntityId");
-                });
-
-            modelBuilder.Entity("Lgm.Emos.Core.Entities.Team", b =>
-                {
-                    b.HasOne("Lgm.Emos.Core.Entities.Entity", "Entity")
-                        .WithMany()
-                        .HasForeignKey("EntityId");
-
-                    b.HasOne("Lgm.Emos.Core.Entities.Team", "TeamLeader")
-                        .WithMany()
-                        .HasForeignKey("TeamLeaderId");
-                });
-
             modelBuilder.Entity("Lgm.Emos.Core.Entities.UserEntity", b =>
                 {
-                    b.HasOne("Lgm.Emos.Core.Entities.EmosUser", "User")
-                        .WithMany("UserEntities")
-                        .HasForeignKey("EmosUserId")
+                    b.HasOne("Lgm.Emos.Core.Entities.Entity", "Entity")
+                        .WithMany()
+                        .HasForeignKey("EntityId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Lgm.Emos.Core.Entities.Entity", "Entity")
-                        .WithMany("UserEntities")
-                        .HasForeignKey("EntityId")
+                    b.HasOne("Lgm.Emos.Core.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -474,52 +335,7 @@ namespace Lgm.Emos.Infrastructure.Migrations
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Lgm.Emos.Core.Entities.EmosUser", "User")
-                        .WithMany("UserTeams")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.HasOne("Lgm.Emos.Core.Entities.IdentityAppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.HasOne("Lgm.Emos.Core.Entities.IdentityAppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Lgm.Emos.Core.Entities.IdentityAppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.HasOne("Lgm.Emos.Core.Entities.IdentityAppUser")
+                    b.HasOne("Lgm.Emos.Core.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
